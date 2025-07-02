@@ -7,7 +7,12 @@
 		{
 			"Name": "LostArkMobile",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Slate",
+				"SlateCore",
+				"Engine"
+			]
 		}
 	],
 	"Plugins": [

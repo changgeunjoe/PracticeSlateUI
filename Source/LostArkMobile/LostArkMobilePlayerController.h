@@ -21,7 +21,7 @@ UCLASS(abstract)
 class ALostArkMobilePlayerController : public APlayerController
 {
 	GENERATED_BODY()
-
+	
 protected:
 
 	/** Time Threshold to know if it was a short press */
@@ -61,6 +61,10 @@ public:
 	/** Constructor */
 	ALostArkMobilePlayerController();
 
+	
+	TSharedPtr<class SCircle> CircleWidget;
+	TSharedPtr<class SWidget> MenuWidgetContainer;
+
 protected:
 
 	/** Initialize input bindings */
@@ -75,6 +79,7 @@ protected:
 	void OnSetDestinationReleased();
 	void OnTouchTriggered();
 	void OnTouchReleased();
+
 
 };
 

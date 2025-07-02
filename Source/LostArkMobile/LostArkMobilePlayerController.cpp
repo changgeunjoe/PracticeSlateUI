@@ -11,6 +11,9 @@
 #include "InputActionValue.h"
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
+#include "UI/Slate/SCircle.h"
+#include "UI/Slate/SMainMenuSlate.h"
+#include "Widgets/SWeakWidget.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -30,6 +33,19 @@ void ALostArkMobilePlayerController::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
+
+	// UE_LOG(LogTemp, Warning, TEXT("PC BeginPlay 실행"));
+	//
+	// if (GEngine && GEngine->GameViewport)
+	// {
+	// 	// slate 생성
+	// 	// .OwningHUD(this).TempVal(5)를 통해 Construct 함수의 InArgs에 파라메터를 넘겨준다.
+	// 	MainMenuWidget = SNew(SCircle)
+	// 		.TempVal(5);
+	// 	GEngine->GameViewport->AddViewportWidgetContent(
+	// 		SAssignNew(MenuWidgetContainer, SWeakWidget).PossiblyNullContent(MainMenuWidget.ToSharedRef()));
+	// }
+
 }
 
 void ALostArkMobilePlayerController::SetupInputComponent()
