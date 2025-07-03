@@ -12,6 +12,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "Engine/LocalPlayer.h"
 #include "UI/Slate/SCircle.h"
+#include "UI/Slate/SCustomSlateWidget.h"
 #include "UI/Slate/SMainMenuSlate.h"
 #include "Widgets/SWeakWidget.h"
 
@@ -34,17 +35,19 @@ void ALostArkMobilePlayerController::BeginPlay()
 	// Call the base class  
 	Super::BeginPlay();
 
-	// UE_LOG(LogTemp, Warning, TEXT("PC BeginPlay 실행"));
-	//
-	// if (GEngine && GEngine->GameViewport)
-	// {
-	// 	// slate 생성
-	// 	// .OwningHUD(this).TempVal(5)를 통해 Construct 함수의 InArgs에 파라메터를 넘겨준다.
-	// 	MainMenuWidget = SNew(SCircle)
-	// 		.TempVal(5);
-	// 	GEngine->GameViewport->AddViewportWidgetContent(
-	// 		SAssignNew(MenuWidgetContainer, SWeakWidget).PossiblyNullContent(MainMenuWidget.ToSharedRef()));
-	// }
+	const TSharedRef<SWindow> ToolWindow = SNew(SWindow)
+	  .ClientSize(FVector2D(200, 200))
+	  .SizingRule(ESizingRule::FixedSize)
+	  .SupportsMaximize(false)
+	  .SupportsMinimize(false)
+	  .CreateTitleBar(false)
+	  .AutoCenter(EAutoCenter::PreferredWorkArea)
+	  .IsTopmostWindow(true)
+	  [
+		  SNew(SCustomSlateWidget)
+	  ];
+
+	FSlateApplication::Get().AddWindow(ToolWindow, /*bShowImmediately=*/true);
 
 }
 
