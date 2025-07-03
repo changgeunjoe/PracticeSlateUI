@@ -34,20 +34,20 @@ void ALostArkMobilePlayerController::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
-
-	const TSharedRef<SWindow> ToolWindow = SNew(SWindow)
-	  .ClientSize(FVector2D(200, 200))
-	  .SizingRule(ESizingRule::FixedSize)
-	  .SupportsMaximize(false)
-	  .SupportsMinimize(false)
-	  .CreateTitleBar(false)
-	  .AutoCenter(EAutoCenter::PreferredWorkArea)
-	  .IsTopmostWindow(true)
-	  [
-		  SNew(SCustomSlateWidget)
-	  ];
-
-	FSlateApplication::Get().AddWindow(ToolWindow, /*bShowImmediately=*/true);
+	//
+	// const TSharedRef<SWindow> ToolWindow = SNew(SWindow)
+	//   .ClientSize(FVector2D(200, 200))
+	//   .SizingRule(ESizingRule::FixedSize)
+	//   .SupportsMaximize(false)
+	//   .SupportsMinimize(false)
+	//   .CreateTitleBar(false)
+	//   .AutoCenter(EAutoCenter::PreferredWorkArea)
+	//   .IsTopmostWindow(true)
+	//   [
+	// 	  SNew(SCustomSlateWidget)
+	//   ];
+	//
+	// FSlateApplication::Get().AddWindow(ToolWindow, /*bShowImmediately=*/true);
 
 }
 

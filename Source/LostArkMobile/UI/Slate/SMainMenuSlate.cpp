@@ -7,7 +7,7 @@
 // localize for all languages
 #define LOCTEXT_NAMESPACE "MainMenu"
 
-void SMainMenuSlate::Construct(const FArguments & InArgs)
+void SMainMenuSlate::Construct(const FArguments& InArgs)
 {
 	// 생성될 때 받은 argument들이 InArgs를 통해 들어온다.
 	// InArgs._TempVal
@@ -33,27 +33,59 @@ void SMainMenuSlate::Construct(const FArguments & InArgs)
 	SAssignNew(CircleWidget, SCircle);
 	ChildSlot
 	[
-		SNew(SHorizontalBox)                        
-	   + SHorizontalBox::Slot()                    
-	   [                                           
-		   SNew(STextBlock)                        
-		   .Text(FText::FromString("Hello"))       
-	   ]
-	   + SHorizontalBox::Slot()                    
-	   [
-		   SNew(STextBlock)                        
-		   .Text_Lambda([](){                
-			   return FText::FromString("Slate");
-		   })      
-	   ]
+		SNew(SHorizontalBox)
 		+ SHorizontalBox::Slot()
-	  .Padding(ButtonPadding)
-	  .AutoWidth()          .VAlign(VAlign_Center)
-	  [
-	  	CircleWidget.ToSharedRef()
-	  ]
-		
-
+		[
+			SNew(STextBlock)
+			.Text(FText::FromString("Hello"))
+		]
+		+ SHorizontalBox::Slot()
+		[
+			SNew(STextBlock)
+			.Text_Lambda([]()
+			{
+				return FText::FromString("Slate");
+			})
+		]
+		+ SHorizontalBox::Slot()
+		.Padding(ButtonPadding)
+		.AutoWidth()
+		.VAlign(VAlign_Center)
+		[
+			CircleWidget.ToSharedRef()
+		]
+		/* ④ 새로 추가한 SButton */
+		+ SHorizontalBox::Slot()
+		.Padding(ButtonPadding)
+		.AutoWidth()
+		.VAlign(VAlign_Center)
+		[
+			SNew(SButton)
+			.Text(FText::FromString("Click Me"))
+			.OnClicked_Lambda([]()
+			{
+				UE_LOG(LogTemp, Log, TEXT("Button pressed!"));
+				return FReply::Handled();
+			})
+		]
+		/* ⑤ 가로 스크롤바 추가 */
+		+ SHorizontalBox::Slot()
+		.Padding(ButtonPadding)
+		.FillWidth(1.f) // 가로 길이는 남는 공간
+		[
+			SNew(SBox)
+			.HeightOverride(16.f) // ← 바 높이 강제 확보
+			[
+				SNew(SScrollBar)
+				                .Orientation(Orient_Horizontal)
+				                .Thickness(FVector2D(8.f, 8.f))
+				                .AlwaysShowScrollbar(true) // 5.4+ (있는 버전이면 켜 주기)
+				                .OnUserScrolled_Lambda([](float Off)
+				                {
+					                UE_LOG(LogTemp, Log, TEXT("Offset %.2f"), Off);
+				                })
+			]
+		]
 	];
 }
 
